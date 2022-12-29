@@ -1,13 +1,13 @@
-** Java Either **
+## Java Either
 
-*** Introduction ***
+### Introduction
 
 The purpose of this library is to give support in Java to a different way to process success and failure in our components.
 We've detected an extensive use of a way of handling failure scenarios that we consider unnecessary and wrong in different ways.
 Therefore, we propose the use of this monad to facilitate handling of failures and also improve the readability of the 
 flow in our source code.
 
-*** Getting started ***
+### Getting started
 
 To be able to use our `Either` object, you will first have to import this dependency into your project.
 
@@ -25,7 +25,7 @@ For Maven users you will have to use the following:
 
 You will also need JDK 17 to be able to use this library, at least for the time being.
 
-*** Usage ***
+### Usage
 
 In order to introduce `Either` in your responses. This is quite simple.
 

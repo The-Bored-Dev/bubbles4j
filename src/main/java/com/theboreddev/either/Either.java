@@ -13,6 +13,16 @@ public abstract class Either<F extends Exception, S> {
         return new Either.Success<>(entity);
     }
 
+    public Either.Success<F, S> success() {
+        if (this instanceof Either.Success<F,S>) return (Success<F, S>) this;
+        throw new IllegalStateException("Instance is not of type " + Either.Success.class.getSimpleName());
+    }
+
+    public Either.Failure<F, S> failure() {
+        if (this instanceof Either.Failure<F,S>) return (Failure<F, S>) this;
+        throw new IllegalStateException("Instance is not of type " + Either.Failure.class.getSimpleName());
+    }
+
     public static final class Success<F extends Exception, S> extends Either<F, S> {
         private final S s;
 

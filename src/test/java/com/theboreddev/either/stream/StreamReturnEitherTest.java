@@ -20,7 +20,7 @@ public class StreamReturnEitherTest {
         Either<Exception, Stream<Integer>> result = dependency.call();
 
         assertThat(result.type()).isEqualTo(Either.EitherType.SUCCESS);
-        assertThat(((Either.Success<Exception, Stream<Integer>>)result).entity().toList()).isEqualTo(List.of(1, 2, 3, 4, 5));
+        assertThat(result.success().entity().toList()).isEqualTo(List.of(1, 2, 3, 4, 5));
     }
 
     @Test

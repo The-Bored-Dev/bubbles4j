@@ -21,6 +21,7 @@ public class CollectionReturnEitherTest {
 
         assertThat(result.type()).isEqualTo(Either.EitherType.SUCCESS);
         assertThat(result).isEqualTo(Either.success(data));
+        assertThat(result.success().entity()).isEqualTo(data);
     }
 
     @Test
@@ -32,5 +33,6 @@ public class CollectionReturnEitherTest {
 
         assertThat(result.type()).isEqualTo(Either.EitherType.FAILURE);
         assertThat(result).isEqualTo(Either.failure(new IllegalStateException("Something went wrong!")));
+        assertThat(result.failure().exception()).isInstanceOf(IllegalStateException.class);
     }
 }

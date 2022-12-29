@@ -12,7 +12,7 @@ public class SimpleReturnEitherTest {
     @Test
     void shouldHandleASuccessfulResponseAccordingly() {
 
-        final Dependency success = new SuccessCall();
+        final SimpleDependency success = new SuccessCall();
 
         Either<Exception, Result> result = success.call();
 
@@ -24,7 +24,7 @@ public class SimpleReturnEitherTest {
     @Test
     void shouldHandleAFailureResponseAccordingly() {
 
-        final Dependency failure = new FailureCall();
+        final SimpleDependency failure = new FailureCall();
 
         Either<Exception, Result> result = failure.call();
 

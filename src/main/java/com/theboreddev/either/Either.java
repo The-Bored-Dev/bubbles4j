@@ -3,7 +3,7 @@ package com.theboreddev.either;
 import java.util.Objects;
 
 public abstract class Either<F extends Exception, S> {
-    abstract EitherType type();
+    public abstract EitherType type();
 
     public static <F extends Exception, S> Failure<F, S> failure(F exception) {
         return new Either.Failure<>(exception);
@@ -13,19 +13,19 @@ public abstract class Either<F extends Exception, S> {
         return new Either.Success<>(entity);
     }
 
-    static final class Success<F extends Exception, S> extends Either<F, S> {
+    public static final class Success<F extends Exception, S> extends Either<F, S> {
         private final S s;
 
         private Success(S s) {
             this.s = s;
         }
 
-        S entity() {
+        public S entity() {
             return s;
         }
 
         @Override
-        EitherType type() {
+        public EitherType type() {
             return EitherType.SUCCESS;
         }
 
@@ -50,19 +50,19 @@ public abstract class Either<F extends Exception, S> {
         }
     }
 
-    static final class Failure<F extends Exception, S> extends Either<F, S> {
+    public static final class Failure<F extends Exception, S> extends Either<F, S> {
         private final F f;
 
         private Failure(F f) {
             this.f = f;
         }
 
-        F exception() {
+        public F exception() {
             return f;
         }
 
         @Override
-        EitherType type() {
+        public EitherType type() {
             return EitherType.FAILURE;
         }
 
@@ -88,7 +88,7 @@ public abstract class Either<F extends Exception, S> {
         }
     }
 
-    enum EitherType {
+    public enum EitherType {
         SUCCESS,
         FAILURE
     }

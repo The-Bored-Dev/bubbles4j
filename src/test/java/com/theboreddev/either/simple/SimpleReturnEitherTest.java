@@ -1,6 +1,8 @@
-package com.theboreddev.either;
+package com.theboreddev.either.simple;
 
+import com.theboreddev.either.Either;
 import com.theboreddev.either.Either.EitherType;
+import com.theboreddev.either.Result;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,8 +16,8 @@ public class SimpleReturnEitherTest {
 
         Either<Exception, Result> result = success.call();
 
-        assertThat(result).isEqualTo(Either.success(new Result("OK")));
         assertThat(result.type()).isEqualTo(EitherType.SUCCESS);
+        assertThat(result).isEqualTo(Either.success(new Result("OK")));
         assertThat(((Either.Success<Exception, Result>)result).entity()).isEqualTo(new Result("OK"));
     }
 
@@ -26,8 +28,8 @@ public class SimpleReturnEitherTest {
 
         Either<Exception, Result> result = failure.call();
 
-        assertThat(result).isEqualTo(Either.failure(new IllegalStateException("Something went wrong!")));
         assertThat(result.type()).isEqualTo(EitherType.FAILURE);
+        assertThat(result).isEqualTo(Either.failure(new IllegalStateException("Something went wrong!")));
         assertThat(((Either.Failure<Exception, Result>)result).exception()).isInstanceOf(IllegalStateException.class);
     }
 }

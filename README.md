@@ -1,10 +1,11 @@
-## J-Bubbles
+## jBubbles
 
 ### Introduction
 
-The purpose of this library is to give support in Java to a different way to process success and failure in our components.
+The purpose of "jBubbles" library is to give support in Java to a different way to process success and failure in our components, avoiding the traditional 
+use of exception bubbling to handle failures. This is where its name comes from.
 We've detected an extensive use of a way of handling failure scenarios that we consider unnecessary and wrong in different ways.
-Therefore, we propose the use of this monad to facilitate handling of failures and also improve the readability of the 
+Therefore, we propose the use of monads to facilitate handling of failures and also improve the readability of the 
 flow in our source code.
 
 ### Getting started
@@ -14,7 +15,7 @@ To be able to use our `Either` object, you will first have to import this depend
 For Gradle users this will be:
 
 ```
-implementation "com.theboreddev:either:1.0"
+implementation "com.theboreddev:jbubbles:1.0"
 ```
 
 For Maven users you will have to use the following:
@@ -52,5 +53,10 @@ Once your component returns an `Either`, processing the result should be as simp
         }
     }
 ```
+
+If you have any queries or suggestions, please contact us in the below email address:
+
+account@theboreddev.com
+
 
 

@@ -1,8 +1,8 @@
-## jBubbles
+## Bubbles4j
 
 ### Introduction
 
-The purpose of "jBubbles" library is to give support in Java to a different way to process success and failure in our components, avoiding the traditional 
+The purpose of "Bubbles4j" library is to give support in Java to a different way to process success and failure in our components, avoiding the traditional 
 use of exception bubbling to handle failures. This is where its name comes from.
 We've detected an extensive use of a way of handling failure scenarios that we consider unnecessary and wrong in different ways.
 Therefore, we propose the use of monads to facilitate handling of failures and also improve the readability of the 

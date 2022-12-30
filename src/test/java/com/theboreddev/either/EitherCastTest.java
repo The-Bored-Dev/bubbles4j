@@ -29,7 +29,7 @@ public class EitherCastTest {
 
         assertThatThrownBy(result::failure)
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Instance is not of type " + Either.Failure.class.getSimpleName());
+                .hasMessage("Instance is not of type " + Failure.class.getSimpleName());
     }
 
     @Test
@@ -39,7 +39,9 @@ public class EitherCastTest {
 
         Either<Exception, Result> result = dependency.call();
 
-        assertThat(result.failure()).isEqualTo(Either.failure(new IllegalStateException("Something went wrong!")));
+        assertThat(result.type()).isEqualTo(EitherType.FAILURE);
+        assertThat(result.failure().exception()).isInstanceOf(IllegalStateException.class);
+        assertThat(result.failure().exception().getMessage()).isEqualTo("Something went wrong!");
     }
 
     @Test
@@ -51,6 +53,6 @@ public class EitherCastTest {
 
         assertThatThrownBy(result::success)
                 .isInstanceOf(IllegalStateException.class)
-                        .hasMessage("Instance is not of type " + Either.Success.class.getSimpleName());
+                        .hasMessage("Instance is not of type " +Success.class.getSimpleName());
     }
 }

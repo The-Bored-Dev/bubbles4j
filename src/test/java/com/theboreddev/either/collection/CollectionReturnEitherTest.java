@@ -1,6 +1,7 @@
 package com.theboreddev.either.collection;
 
 import com.theboreddev.either.Either;
+import com.theboreddev.either.EitherType;
 import com.theboreddev.either.Result;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class CollectionReturnEitherTest {
 
         Either<Exception, List<Result>> result = dependency.call();
 
-        assertThat(result.type()).isEqualTo(Either.EitherType.SUCCESS);
+        assertThat(result.type()).isEqualTo(EitherType.SUCCESS);
         assertThat(result).isEqualTo(Either.success(data));
         assertThat(result.success().entity()).isEqualTo(data);
     }
@@ -31,8 +32,8 @@ public class CollectionReturnEitherTest {
 
         Either<Exception, List<Result>> result = dependency.call();
 
-        assertThat(result.type()).isEqualTo(Either.EitherType.FAILURE);
-        assertThat(result).isEqualTo(Either.failure(new IllegalStateException("Something went wrong!")));
+        assertThat(result.type()).isEqualTo(EitherType.FAILURE);
         assertThat(result.failure().exception()).isInstanceOf(IllegalStateException.class);
+        assertThat(result.failure().exception().getMessage()).isEqualTo("Something went wrong!");
     }
 }

@@ -14,14 +14,18 @@ To be able to use our `Either` object, you will first have to import this depend
 
 For Gradle users this will be:
 
-```
-implementation "com.theboreddev:jbubbles:1.0"
+```groovy
+implementation "com.theboreddev:bubbles4j:1.0.0"
 ```
 
 For Maven users you will have to use the following:
 
-```java
-
+```xml
+<dependency>
+    <groupId>com.theboreddev</groupId>
+    <artifactId>bubbles4j</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 You will also need JDK 17 to be able to use this library, at least for the time being.

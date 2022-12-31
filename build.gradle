@@ -7,6 +7,28 @@ plugins {
     id 'net.researchgate.release' version '3.0.2'
 }
 
+
+group 'com.theboreddev'
+project.version = "1.0.0-SNAPSHOT"
+sourceCompatibility = '17'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.1")
+
+    testImplementation 'org.assertj:assertj-core:3.23.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+}
+
 release {
     failOnCommitNeeded = true
     failOnPublishNeeded = true
@@ -49,29 +71,6 @@ release {
         pinExternals.set(false)   // allows to pin the externals when tagging, requires subversion client >= 1.9.0
     }
 }
-
-group 'com.theboreddev'
-project.version = "1.0.0-SNAPSHOT"
-sourceCompatibility = '17'
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.1")
-    implementation 'org.eclipse.jgit:org.eclipse.jgit.ssh.apache:6.4.0.202211300538-r'
-
-    testImplementation 'org.assertj:assertj-core:3.23.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
-}
-
 publishing {
     publications {
         maven(MavenPublication) {

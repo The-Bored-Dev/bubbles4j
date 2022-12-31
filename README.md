@@ -58,5 +58,9 @@ If you have any queries or suggestions, please contact us in the below email add
 
 account@theboreddev.com
 
+Copyright
+
+This project is licensed under Apache 2.0 License
+https://www.apache.org/licenses/LICENSE-2.0.txt
 
 

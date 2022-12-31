@@ -2,13 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'signing'
-    id 'pl.allegro.tech.build.axion-release' version '1.12.0'
-}
-
-scmVersion {
-    tag {
-        initialVersion = {config, position -> "1.0.0"}
-    }
+    id 'pl.allegro.tech.build.axion-release' version '1.14.3'
 }
 
 group 'com.theboreddev'

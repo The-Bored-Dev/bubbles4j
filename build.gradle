@@ -108,8 +108,8 @@ publishing {
     repositories {
         maven {
             credentials {
-                username = "$OSSRHUSERNAME"
-                password = "$OSSRHPASSWORD"
+                username = "$System.env.OSSRHUSERNAME"
+                password = "$System.env.OSSRHPASSWORD"
             }
 
             def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"

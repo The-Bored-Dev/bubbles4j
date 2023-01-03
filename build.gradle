@@ -81,6 +81,7 @@ publishing {
             pom {
                 name = 'Bubble4j'
                 description = 'Monads for improved failure handling in Java.'
+                url = 'https://github.com/theboreddev/bubbles4j.git'
 
                 licenses {
                     license {
@@ -107,8 +108,8 @@ publishing {
     repositories {
         maven {
             credentials {
-                username = "$ossrhUsername"
-                password = "$ossrhPassword"
+                username = "$OSSRHUSERNAME"
+                password = "$OSSRHPASSWORD"
             }
 
             def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"

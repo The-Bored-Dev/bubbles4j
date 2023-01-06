@@ -15,7 +15,7 @@ To be able to use our `Either` object, you will first have to import this depend
 For Gradle users this will be:
 
 ```groovy
-implementation "com.theboreddev:bubbles4j:1.0.0"
+implementation "com.theboreddev:bubbles4j:1.0.3"
 ```
 
 For Maven users you will have to use the following:
@@ -24,7 +24,7 @@ For Maven users you will have to use the following:
 <dependency>
     <groupId>com.theboreddev</groupId>
     <artifactId>bubbles4j</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 

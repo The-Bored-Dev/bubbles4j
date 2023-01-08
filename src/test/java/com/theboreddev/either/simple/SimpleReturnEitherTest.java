@@ -18,7 +18,7 @@ public class SimpleReturnEitherTest {
 
         assertThat(result.type()).isEqualTo(EitherType.SUCCESS);
         assertThat(result).isEqualTo(Either.success(new Result("OK")));
-        assertThat((result.success().entity())).isEqualTo(new Result("OK"));
+        assertThat((result.success().get())).isEqualTo(new Result("OK"));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class SimpleReturnEitherTest {
         Either<Exception, Result> result = failure.call();
 
         assertThat(result.type()).isEqualTo(EitherType.FAILURE);
-        assertThat(result.failure().exception()).isInstanceOf(IllegalStateException.class);
-        assertThat(result.failure().exception().getMessage()).isEqualTo("Something went wrong!");
+        assertThat(result.failure().get()).isInstanceOf(IllegalStateException.class);
+        assertThat(result.failure().get().getMessage()).isEqualTo("Something went wrong!");
     }
 }

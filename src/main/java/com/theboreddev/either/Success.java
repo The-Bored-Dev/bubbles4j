@@ -1,8 +1,13 @@
 package com.theboreddev.either;
 
-import java.util.function.Function;
+import java.util.Objects;
 
-public record Success<F, S>(S entity) implements Either<F, S> {
+public class Success<F, S> extends Either<F, S> {
+    private final S entity;
+
+    Success(S entity) {
+        this.entity = entity;
+    }
 
     @Override
     public EitherType type() {
@@ -10,8 +15,18 @@ public record Success<F, S>(S entity) implements Either<F, S> {
     }
 
     @Override
-    public <T> Either<F, T> map(Function<Either<F, S>, T> map) {
-        return new Success<>(map.apply(this));
+    public S get() {
+        return (S) this.successHandler.apply(this);
+    }
+
+    @Override
+    public Failure<F, S> failure() {
+        throw new IllegalStateException("Instance is not of type Failure");
+    }
+
+    @Override
+    public Success<F, S> success() {
+        return this;
     }
 
 
@@ -20,12 +35,22 @@ public record Success<F, S>(S entity) implements Either<F, S> {
     }
 
     @Override
-    public Success<F, S> success() {
-        return this;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Success<?, ?> success = (Success<?, ?>) o;
+        return Objects.equals(entity, success.entity);
     }
 
     @Override
-    public Failure<F, S> failure() {
-        throw new IllegalStateException("Instance is not of type Failure");
+    public int hashCode() {
+        return Objects.hash(entity);
+    }
+
+    @Override
+    public String toString() {
+        return "Success{" +
+                "entity=" + entity +
+                '}';
     }
 }

@@ -22,7 +22,7 @@ public class CollectionReturnEitherTest {
 
         assertThat(result.type()).isEqualTo(EitherType.SUCCESS);
         assertThat(result).isEqualTo(Either.success(data));
-        assertThat(result.success().entity()).isEqualTo(data);
+        assertThat(result.get()).isEqualTo(data);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class CollectionReturnEitherTest {
         Either<Exception, List<Result>> result = dependency.call();
 
         assertThat(result.type()).isEqualTo(EitherType.FAILURE);
-        assertThat(result.failure().exception()).isInstanceOf(IllegalStateException.class);
-        assertThat(result.failure().exception().getMessage()).isEqualTo("Something went wrong!");
+        assertThat(result.get()).isInstanceOf(IllegalStateException.class);
+        assertThat(result.failure().get().getMessage()).isEqualTo("Something went wrong!");
     }
 }

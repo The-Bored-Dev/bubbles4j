@@ -1,8 +1,16 @@
 package com.theboreddev.either;
 
-import java.util.function.Function;
+import java.util.Objects;
 
-public record Failure<F, S>(F exception) implements Either<F, S> {
+public class Failure<F, S> extends Either<F, S> {
+    private final F exception;
+
+
+    Failure(F exception) {
+        this.exception = exception;
+    }
+
+
 
     @Override
     public EitherType type() {
@@ -10,8 +18,18 @@ public record Failure<F, S>(F exception) implements Either<F, S> {
     }
 
     @Override
-    public <T> Either<F, T> map(Function<Either<F, S>, T> map) {
-        return new Failure<>(this.exception);
+    public F get() {
+        return (F) failureHandler.apply(this);
+    }
+
+    @Override
+    public Failure<F, S> failure() {
+        return this;
+    }
+
+    @Override
+    public Success<F, S> success() {
+        throw new IllegalStateException("Instance is not of type Success");
     }
 
 
@@ -20,12 +38,22 @@ public record Failure<F, S>(F exception) implements Either<F, S> {
     }
 
     @Override
-    public Success<F, S> success() {
-        throw new IllegalStateException("Instance is not of type Success");
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Failure<?, ?> failure = (Failure<?, ?>) o;
+        return Objects.equals(exception, failure.exception);
     }
 
     @Override
-    public Failure<F, S> failure() {
-        return this;
+    public int hashCode() {
+        return Objects.hash(exception);
+    }
+
+    @Override
+    public String toString() {
+        return "Failure{" +
+                "exception=" + exception +
+                '}';
     }
 }

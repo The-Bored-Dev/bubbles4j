@@ -15,7 +15,7 @@ To be able to use our `Either` object, you will first have to import this depend
 For Gradle users this will be:
 
 ```groovy
-implementation "com.theboreddev:bubbles4j:1.0.3"
+implementation "com.theboreddev:bubbles4j:2.0.0"
 ```
 
 For Maven users you will have to use the following:
@@ -24,7 +24,7 @@ For Maven users you will have to use the following:
 <dependency>
     <groupId>com.theboreddev</groupId>
     <artifactId>bubbles4j</artifactId>
-    <version>1.0.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -46,17 +46,33 @@ Once your component returns an `Either`, processing the result should be as simp
 
 ```java
     final Either<Exception, Customer> result = customerService.fetchById(id);
-    switch (result) {
-        case Success -> return result.entity();
-        case Failure -> {
-            switch (result.exception()){
-                case JsonProcessingException -> ...
-                case IllegalArgumentExcetion -> ...
+        switch (result.type()) {
+            case SUCCESS -> result.get();
+            case FAILURE -> {
+                Exception exception = result.get();
+                if (exception instanceof CustomerNotFound){
+                    ...
+                } else if (exception instanceof IllegalArgumentException){
+                    ...
+                } else {
+                    ...
+                }
             }
-        }
         }
     }
 ```
+
+When method `get` is called, by the default it'll return either an entity or an exception for success and failure responses respectively.
+
+This default behaviour can be overridden by using `onSuccessDo` and `onFailureDo` methods. A usage example could be:
+
+```java
+    Either<Exception, ResponseEntity<Customer>> response = customerService.fetchById(id)
+                                .onSuccessDo(s -> ResponseEntity.ok(s.success().entity()))
+                                .onFailureDo(f -> ResponseEntity.internalServerError().build())
+                                .build()
+```
+
 
 If you have any queries or suggestions, please contact us in the below email address:
 
